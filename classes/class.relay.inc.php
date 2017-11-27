@@ -4,8 +4,6 @@ class relay
 	private $get;
 	private $post;
 	
-	private $log = false;
-	
 	public function __construct()
 	{
 		/**
@@ -13,15 +11,6 @@ class relay
 		 */
 		$this->get = &$_GET;
 		$this->post = &$_POST;
-	}
-
-	/**
-	 * Save API Access
-	 * @param bool $mode
-	 */
-	public function log($mode=false)
-	{
-		$this->log = $mode === true;
 	}
 
 	/**
