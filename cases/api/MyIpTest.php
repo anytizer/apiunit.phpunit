@@ -1,6 +1,6 @@
 <?php
 
-class MyIpTest extends PHPUnit_Framework_TestCase
+class MyIpTest extends PHPUnit\Framework\TestCase
 {
     private $relay = null;
 
@@ -10,7 +10,8 @@ class MyIpTest extends PHPUnit_Framework_TestCase
          * Use any good API
          * @todo Gives Method NOT Allowed error
          */
-        $this->api_url = "http://ip.example.com/";
+        //$this->api_url = "http://ip.example.com/";
+        $this->api_url = "http://ip-api.com/json";
 
         $_GET = array();
         $_POST = array();

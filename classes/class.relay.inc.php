@@ -117,21 +117,6 @@ class relay
 			echo "cURL error ({$errno}):\n {$error_message}";
 		}
 		
-		if($this->log)
-		{
-			$datetime = date('Y-m-d H:i:s');
-			$requested_url = $_SERVER['REQUEST_URI'];
-			file_put_contents('/tmp/curl.log', "
-Time: {$datetime}
-IP: {$_SERVER['REMOTE_ADDR']}
-	Requested: {$requested_url}
-	Redirected to: {$url}
-	GET: {$get_parameters}
-	POST: {$post_parameters}
-
-", FILE_APPEND|FILE_BINARY);
-		}
-		
 		curl_close($ch);
 		return $content_extracted;
 	}

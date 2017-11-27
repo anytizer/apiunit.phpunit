@@ -2,7 +2,7 @@
 /**
  * Generate and Use tokens before actual API is being accessed
  */
-class TokenTest extends PHPUnit_Framework_TestCase
+class TokenTest extends PHPUnit\Framework\TestCase
 {
 	private $relay = null;
 
