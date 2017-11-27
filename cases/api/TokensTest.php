@@ -1,8 +1,10 @@
 <?php
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Generate and Use tokens before actual API is being accessed
  */
-class TokenTest extends PHPUnit\Framework\TestCase
+class TokenTest extends TestCase
 {
 	private $relay = null;
 
@@ -12,7 +14,6 @@ class TokenTest extends PHPUnit\Framework\TestCase
 		$_POST = array();
 
 		$this->relay = new relay();
-		$this->relay->log(true);
 	}
 
 	public function testTokenCreate()

@@ -1,8 +1,10 @@
 <?php
+use \PHPUnit\Framework\TestCase;
+
 /**
  * Define your own Test Cases
  */
-class ApiPingTest extends PHPUnit\Framework\TestCase
+class ApiPingTest extends TestCase
 {
 	private $relay = null;
 

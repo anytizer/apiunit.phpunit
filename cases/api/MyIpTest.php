@@ -1,6 +1,7 @@
 <?php
+use \PHPUnit\Framework\TestCase;
 
-class MyIpTest extends PHPUnit\Framework\TestCase
+class MyIpTest extends TestCase
 {
     private $relay = null;
 
@@ -17,7 +18,6 @@ class MyIpTest extends PHPUnit\Framework\TestCase
         $_POST = array();
 
         $this->relay = new relay();
-        $this->relay->log(true);
     }
 
     /**
