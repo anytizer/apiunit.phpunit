@@ -141,6 +141,7 @@ class relay
 		curl_setopt($ch, CURLOPT_REFERER, $_SERVER['HTTP_REFERER']); # sometimes selective
 		curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); # sometimes selective
 		curl_setopt($ch, CURLOPT_VERBOSE, false);
+		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 		// CURLOPT_STDERR
 		// CURLOPT_UPLOAD
 
@@ -167,7 +168,16 @@ class relay
 			echo "cURL error #{$error}:\n {$error_message}";
 		}
 
+		// @see http://php.net/curl_getinfo
+		// CURLINFO_HEADER_OUT
+		// CURLINFO_HTTP_CODE
+		// CURLINFO_HEADER_SIZE
+		// CURLINFO_CONTENT_TYPE
+		// CURLINFO_RESPONSE_CODE
+
 		$http_code	= curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$headers = curl_getinfo($ch,CURLINFO_HEADER_OUT);
+		#echo $headers;
 		
 		curl_close($ch);
 		return $content_extracted;
