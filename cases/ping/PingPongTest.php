@@ -16,7 +16,7 @@ class PingPongTest extends TestCase
 		$relay = new relay();
 		$result = $relay->fetch((new endpoints())->pingpong);
 
-		$this->assertEquals($result, "pong");
+		$this->assertEquals("pong", $result);
 	}
 
 	/**

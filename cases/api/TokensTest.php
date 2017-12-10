@@ -1,4 +1,5 @@
 <?php
+use connections\relay;
 use \PHPUnit\Framework\TestCase;
 
 /**

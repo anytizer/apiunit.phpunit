@@ -3,3 +3,5 @@ logs/*.*
 out/
 /log.php
 /phpunit.phar
+/.idea
+/*.zip
