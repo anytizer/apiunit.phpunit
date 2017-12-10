@@ -119,7 +119,15 @@ class relay
 		// @see http://php.net/manual/en/function.curl-setopt.php
 		if(count($this->post))
 		{
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post_parameters);
+			/**
+			 * @see http://php.net/manual/en/function.curl-setopt.php
+			 * Passing an array to CURLOPT_POSTFIELDS will encode the data as multipart/form-data, while passing a URL-encoded string will encode the data as application/x-www-form-urlencoded.
+			 * multipart/form-data
+			 * application/x-www-form-urlencoded
+			 */
+			// @todo When uploading a file, do not build http query
+			// curl_setopt($ch, CURLOPT_POSTFIELDS, $post_parameters);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $this->post);
 		} # causes error on IP lookup
 
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 50); # 2 for IP lookup
@@ -133,6 +141,8 @@ class relay
 		curl_setopt($ch, CURLOPT_REFERER, $_SERVER['HTTP_REFERER']); # sometimes selective
 		curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); # sometimes selective
 		curl_setopt($ch, CURLOPT_VERBOSE, false);
+		// CURLOPT_STDERR
+		// CURLOPT_UPLOAD
 
 		// file upload settings
 		curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
@@ -144,7 +154,6 @@ class relay
 		{
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
 		}
-
 		
 		/**
 		 * @todo Fix the file path
