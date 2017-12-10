@@ -2,13 +2,22 @@
 <phpunit bootstrap="bootstrap.php" backupGlobals="false" colors="true">
     <testsuites>
         <testsuite name="api">
-            <directory suffix="Test.php">cases/</directory>
+            <directory suffix="Test.php">cases/api</directory>
+        </testsuite>
+        <testsuite name="headers">
+            <directory suffix="Test.php">cases/headers</directory>
+        </testsuite>
+        <testsuite name="ip">
+            <directory suffix="Test.php">cases/ip</directory>
+        </testsuite>
+        <testsuite name="ping">
+            <directory suffix="Test.php">cases/ping</directory>
         </testsuite>
     </testsuites>
    <logging>
 		<log type="testdox-text" target="logs/testdox.txt" logIncompleteSkipped="true"/>
     </logging>
     <php>
-        <const name="VERSION" value="1.0.0"/>
+        <const name="APIUNIT_VERSION" value="1.0.0"/>
     </php>
 </phpunit>
