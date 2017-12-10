@@ -5,3 +5,4 @@ out/
 /phpunit.phar
 /.idea
 /*.zip
+/resources/*.mp4

@@ -1,6 +1,4 @@
 <?php
-use connections\relay;
-use endpoints\endpoints;
 use \PHPUnit\Framework\TestCase;
 
 class MimeInfoTest extends TestCase
@@ -15,14 +13,8 @@ class MimeInfoTest extends TestCase
 	 */
 	private function mime($filename): string
 	{
-		if(!is_file($filename))
-		{
-			throw new Exception("Not a valid file: {$filename} to check mime.");
-		}
-
-		$finfo = finfo_open(FILEINFO_MIME_TYPE);
-		$mime = finfo_file($finfo, $filename);
-		finfo_close($finfo);
+		$mimer = new \others\mimer();
+		$mime = $mimer->get_mime($filename);
 
 		return $mime;
 	}
