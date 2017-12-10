@@ -18,8 +18,6 @@ class relay
 		 */
 		$this->get = &$_GET;
 		$this->post = &$_POST;
-
-		$this->post = array();
 	}
 
 	/**
