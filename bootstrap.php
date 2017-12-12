@@ -21,3 +21,11 @@ if(!function_exists("http_build_query"))
 {
 	die("http_build_query not initialized.");
 }
+
+stream_context_set_default(
+	array(
+		"http" => array(
+			"method" => "HEAD"
+		)
+	)
+);

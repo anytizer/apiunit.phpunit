@@ -1,1 +1,3 @@
-Experimental application; may not be fit for your specific requirements.
+- Proof of concept work
+- Experimental application
+- May not fit for your specific requirements
