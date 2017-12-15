@@ -1,4 +1,6 @@
 <?php
+#namespace apiunit;
+
 /**
  * Some API gateways need specific headers
  */
@@ -7,10 +9,13 @@ $_SERVER["REQUEST_URI"] = "";
 
 error_reporting(E_ALL|E_STRICT);
 
-require_once("classes/backend\class.spl_include.inc.php");
-spl_autoload_register(array(new \backend\spl_include("./classes"), "namespaced_inc_dot"));
+require_once(dirname(__FILE__)."/classes/backend/class.spl_include.inc.php");
+spl_autoload_register(array(new \backend\spl_include(dirname(__FILE__)."/classes"), "namespaced_inc_dot"));
 
-$endpoints = new \endpoints\endpoints();
+/**
+ * @todo Make endpoints specific to the API groupset being tested.
+ */
+$endpoints = new endpoints\endpoints();
 
 if(!function_exists("curl_init"))
 {
@@ -22,6 +27,9 @@ if(!function_exists("http_build_query"))
 	die("http_build_query not initialized.");
 }
 
+/**
+ * The cURL application will set its own headers
+ */
 stream_context_set_default(
 	array(
 		"http" => array(
@@ -29,3 +37,12 @@ stream_context_set_default(
 		)
 	)
 );
+
+/**
+ * Often XDebug is NOT necessary.
+ * Disable the code below when using xDebug with IDEs like PHPStorm
+ * @see https://xdebug.org/docs/all_functions
+ */
+if(function_exists("xdebug_disable")) {
+	xdebug_disable();
+}

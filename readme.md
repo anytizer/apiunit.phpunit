@@ -5,6 +5,11 @@ It is used send HTTP requests to the API Gateway. Then it analyses the data retu
 Useful in troubleshooting websites that use Ajax and API calls, eg. as in [AngularJS](https://angularjs.org/) based websites.
 
 
+## CLI Reference
+
+	phpunit --testsuite clients
+
+
 ## Capabilities
 
  * Sends GET parameters

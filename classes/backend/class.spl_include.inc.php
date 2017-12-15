@@ -11,6 +11,9 @@ class spl_include
 
     public function namespaced_inc_dot(string $class)
     {
+        #print_r($this);
+        #echo "Searching: ", $class, ': ';
+
         // for name-space based class access
         $chunks = explode("\\", $class);
         $class = array_pop($chunks); // from the last word
@@ -18,12 +21,10 @@ class spl_include
         if(!$namespace) $namespace = ".";
 
         $path = $this->path;
+        $file = "{$path}/{$namespace}/class.{$class}.inc.php";
+        if(is_file($file))
         {
-            $file = "{$path}/{$namespace}/class.{$class}.inc.php";
-            if(is_file($file))
-            {
-                require_once($file);
-            }
+            require_once($file);
         }
     }
 	

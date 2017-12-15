@@ -1,7 +1,6 @@
 <?php
 namespace endpoints;
 
-use endpoints\settings;
 use \ReflectionObject;
 use \ReflectionProperty;
 
