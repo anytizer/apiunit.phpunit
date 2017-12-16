@@ -3,7 +3,6 @@ use \PHPUnit\Framework\TestCase;
 
 class MimeInfoTest extends TestCase
 {
-
 	/**
 	 * @see http://php.net/manual/en/function.finfo-file.php
 	 *

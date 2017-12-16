@@ -28,7 +28,6 @@ class MathTest extends TestCase
 
 		$relay = new relay();
 		$result = $relay->fetch($this->api_url);
-		#echo $result;
 
 		$this->assertEquals("22", $result);
 	}
@@ -46,7 +45,6 @@ class MathTest extends TestCase
 
 		$relay = new relay();
 		$result = $relay->fetch($this->api_url);
-		#echo $result;
 
 		$this->assertEquals("12", $result);
 	}
@@ -64,7 +62,6 @@ class MathTest extends TestCase
 
 		$relay = new relay();
 		$result = $relay->fetch($this->api_url);
-		#echo $result;
 
 		$this->assertEquals("85", $result);
 	}

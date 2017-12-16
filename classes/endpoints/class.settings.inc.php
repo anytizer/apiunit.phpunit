@@ -24,5 +24,3 @@ abstract class settings
 
 	public $login = "tests/login.php";
 }
-
-// eg: http://api.example.com:9090/tests/ping.php
