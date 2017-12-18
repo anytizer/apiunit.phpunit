@@ -7,3 +7,4 @@ out/
 /*.zip
 /resources/*.mp4
 /cases-clients
+/api.tests/logs.txt

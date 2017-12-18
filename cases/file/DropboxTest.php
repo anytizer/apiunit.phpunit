@@ -6,6 +6,12 @@ use endpoints\endpoints;
 use others\ReadyToUpload;
 use \PHPUnit\Framework\TestCase;
 
+/**
+ * Class DropboxTest
+ * @package cases\file
+ *
+ * @see https://www.dropbox.com/developers
+ */
 class DropboxTest extends TestCase
 {
 	private $api_url;

@@ -8,19 +8,20 @@ namespace endpoints;
  */
 abstract class settings
 {
-	public $ip = "tests/ip.php";
-	public $pingpong = "tests/ping.php";
-	public $datetime = "tests/datetime.php";
-	public $math = "tests/math.php";
+	public $ip = "ip.php";
+	public $pingpong = "ping.php";
+	public $datetime = "datetime.php";
+	public $math = "math.php";
 
-	public $get = "tests/get.php";
-	public $post = "tests/post.php";
-	public $server = "tests/server.php";
-	public $cookie = "tests/cookie.php";
+	public $get = "get.php";
+	public $post = "post.php";
+	public $server = "server.php";
+	public $protected_page = "protected-page.php";
+	public $cookie = "cookie.php";
 
-	public $upload_single = "tests/upload-single.php";
-	public $upload_multiple = "tests/upload-multiple.php";
-	public $upload_array = "tests/upload-array.php";
+	public $upload_single = "upload-single.php";
+	public $upload_multiple = "upload-multiple.php";
+	public $upload_array = "upload-array.php";
 
-	public $login = "tests/login.php";
+	public $login = "login.php";
 }

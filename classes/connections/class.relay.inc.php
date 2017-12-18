@@ -54,20 +54,20 @@ class relay
 		if(empty($chunks["fragment"])) $chunks["fragment"] = "";
 
 		#print_r($chunks);
-		
-		$chunks['pass'] = ($chunks['user'] || $chunks['pass'])?":{$chunks['pass']}":'';
-		$chunks['port'] = empty($chunks['port'])?"":":{$chunks['port']}";
+
+		$chunks["pass"] = ($chunks["user"] || $chunks["pass"])?":{$chunks["pass"]}":"";
+		$chunks["port"] = empty($chunks["port"])?"":":{$chunks["port"]}";
 
 		$queries = array();
-		parse_str($chunks['query'], $queries);
+		parse_str($chunks["query"], $queries);
 		#print_r($queries);
 		#print_r(func_get_args());
 		$queries = array_merge((array)$queries, (array)$data);
-		
-		$chunks['query'] = http_build_query($queries);
-		$chunks['query'] = $chunks['query']?"?{$chunks['query']}":'';
-		
-		$chunks['fragment'] = $chunks['fragment']?"#{$chunks['fragment']}":'';
+
+		$chunks["query"] = http_build_query($queries);
+		$chunks["query"] = $chunks["query"]?"?{$chunks["query"]}":"";
+
+		$chunks["fragment"] = $chunks["fragment"]?"#{$chunks["fragment"]}":"";
 
 		$url = "{$chunks['scheme']}://{$chunks['user']}{$chunks['pass']}{$chunks['host']}{$chunks['port']}{$chunks['path']}{$chunks['query']}{$chunks['fragment']}";
 
@@ -132,12 +132,15 @@ class relay
 			 * @todo Handle cases with files upload
 			 */
 			// @todo When uploading a file, do not build with http query
+			curl_setopt($ch, CURLOPT_HTTPGET, false);
 			curl_setopt($ch, CURLOPT_POST, true);
-			$post_parameters = http_build_query((array)$this->post);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post_parameters);
-			//curl_setopt($ch, CURLOPT_POSTFIELDS, $this->post);
-			echo "Sending POST data: ";
-			print_r($this->post);
+
+			//$post_parameters = http_build_query((array)$this->post);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $this->post);
+			//curl_setopt($ch, CURLOPT_POSTFIELDS, $post_parameters);
+
+			#echo "Sending POST data: ";
+			#print_r($this->post);
 		} # causes error on IP lookup
 		else
 		{
@@ -163,11 +166,15 @@ class relay
 		curl_setopt($ch, CURLOPT_HEADEROPT, CURLHEADER_UNIFIED);
 		curl_setopt($ch, CURLOPT_ENCODING, "deflate");
 
+		// CURLOPT_CUSTOMREQUEST
+		// GET, HEAD, DELETE, POST, CONNECT
+
 		/**
-		 * For file uploads?
+		 * Only for file uploads?
+		 * [REQUEST_METHOD] => PUT
 		 */
-		curl_setopt($ch, CURLOPT_UPLOAD, true);
-		curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true); // removed in PHP 7
+		#curl_setopt($ch, CURLOPT_UPLOAD, true);
+		#curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true); // removed in PHP 7
 		// CURLOPT_STDERR
 		// CURLOPT_UPLOAD
 
@@ -185,6 +192,7 @@ class relay
 		
 		/**
 		 * @todo Fix the file path
+		 * @see https://curl.haxx.se/libcurl/c/CURLOPT_COOKIEJAR.html
 		 */
 		curl_setopt($ch, CURLOPT_COOKIEJAR, "/tmp/cookie.jar");
 		curl_setopt($ch, CURLOPT_COOKIEFILE, "/tmp/cookie.jar");
