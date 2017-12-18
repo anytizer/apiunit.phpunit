@@ -1,9 +1,11 @@
 <?php
+namespace cases\post;
+
 use connections\relay;
 use endpoints\endpoints;
 use \PHPUnit\Framework\TestCase;
 
-class CookieTest extends TestCase
+class PostTest extends TestCase
 {
 	private $api_url;
 
@@ -15,11 +17,9 @@ class CookieTest extends TestCase
 		$this->api_url = (new endpoints())->post;
 	}
 
-	public function testCookieMustBePresent1()
+	public function testPostMustBePresent1()
 	{
-		$this->markTestIncomplete(); return;
-
-		$cookie = array(
+		$_POST = array(
 			"id" => "present",
 		);
 
@@ -29,11 +29,9 @@ class CookieTest extends TestCase
 		$this->assertEquals("found", $result);
 	}
 
-	public function testCookieMustBePresent2()
+	public function testPostMustBePresent2()
 	{
-		$this->markTestIncomplete(); return;
-
-		$cookie = array(
+		$_POST = array(
 			"id" => "other",
 		);
 
@@ -43,11 +41,9 @@ class CookieTest extends TestCase
 		$this->assertEquals("invalid", $result);
 	}
 
-	public function testCookieMustBePresent3()
+	public function testPostMustBePresent3()
 	{
-		$this->markTestIncomplete(); return;
-
-		$cookie = array(
+		$_POST = array(
 			"other" => "something",
 		);
 

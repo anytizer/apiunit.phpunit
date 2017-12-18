@@ -37,6 +37,41 @@ You can create several test suites for (different projects) and run them individ
 [Learn to create test suites](https://phpunit.de/manual/current/en/organizing-tests.html). 
 
 	phpunit --testsuite clients
+	phpunit --testsuite cases
+
+### Standard Tests
+
+	phpunit --testsuite api
+	phpunit --testsuite cookie
+	phpunit --testsuite file
+	phpunit --testsuite get
+	phpunit --testsuite headers
+	phpunit --testsuite ip
+	phpunit --testsuite login
+	phpunit --testsuite mime
+	phpunit --testsuite ping
+	phpunit --testsuite post
+
+
+## Examples
+
+It is as simple as:
+
+    $url = "http://localhost/test.php";
+    
+    $_POST = array(
+        "id" => "other",
+    );
+    
+    $relay = new relay();
+    $result = $relay->fetch($url);
+
+In this case, it will POST the data to test.php and fetch the contents.
+If you need JSON data out ot it, just do:
+
+    $json = json_decode($result);
+
+Make sure that your data $result was a valid JSON String.
 
 
 ## Capabilities
@@ -66,8 +101,8 @@ Handles GET and POST to send to the sever. Then, expects JSON.
 
 First, You should have your API Server ready. Discussions beyond scope for now.
 
- * [Math Calculations Test](cases/headers/MathTest.php)
- * [File Upload Test](cases/headers/FileTest.php)
+ * [Math Calculations Test](cases/api/MathTest.php)
+ * [File Upload Test](cases/file/FileTest.php)
  * [API Gateway Ping/Pong Test](cases/ping/PingPongTest.php)
 
 
@@ -80,6 +115,6 @@ You may have to do your own expansion to it to persist your tokens or use more r
    - APIs are meant to be standalone; regardless of their backend technologies.
    - It should be practically possible to test any APIs.
    - Some API gateways might require additional info like HTTP_REFERER, etc. that you have to supply.
-   - Sometimes, cross origin access is an issue.
+   - Sometimes, cross origin access is an issue. See [CORS Enabled](https://www.w3.org/wiki/CORS_Enabled).
  * How do I use this software?
    - __Embed__ it inside any projects as a PHPUnit project.

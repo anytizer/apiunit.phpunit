@@ -1,4 +1,6 @@
 <?php
+namespace cases\api;
+
 use connections\relay;
 use \PHPUnit\Framework\TestCase;
 

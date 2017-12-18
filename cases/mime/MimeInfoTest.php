@@ -1,5 +1,8 @@
 <?php
+namespace cases\mime;
+
 use \PHPUnit\Framework\TestCase;
+use \others\mimer;
 
 class MimeInfoTest extends TestCase
 {
@@ -8,11 +11,11 @@ class MimeInfoTest extends TestCase
 	 *
 	 * @param $filename
 	 * @return string
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	private function mime($filename): string
 	{
-		$mimer = new \others\mimer();
+		$mimer = new mimer();
 		$mime = $mimer->get_mime($filename);
 
 		return $mime;

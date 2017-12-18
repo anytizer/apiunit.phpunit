@@ -1,4 +1,6 @@
 <?php
+namespace cases\login;
+
 use \connections\relay;
 use PHPUnit\Framework\TestCase;
 

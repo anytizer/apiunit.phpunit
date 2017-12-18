@@ -1,4 +1,6 @@
 <?php
+namespace cases\file;
+
 use connections\relay;
 use endpoints\endpoints;
 use others\ReadyToUpload;
@@ -54,8 +56,6 @@ class FileTest extends TestCase
 		// http://php.net/manual/en/curlfile.construct.php
 		// https://wiki.php.net/rfc/curl-file-upload
 		// http://php.net/curl_file_create -- procedural to CurlFile
-
-
 
 		$filename = "resources/acs.png";
 
@@ -133,11 +133,6 @@ class FileTest extends TestCase
 			"reports" => $ru->collect("resources/reports.pdf"),
 		);
 
-		$this->markTestIncomplete();
-	}
-
-	public function testUploadToDropbox()
-	{
 		$this->markTestIncomplete();
 	}
 }

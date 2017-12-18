@@ -6,7 +6,7 @@ class relay
 	private $get;
 	private $post;
 
-	private $headers;
+	private $headers = array();
 
 	/**
 	 * relay constructor.
@@ -26,10 +26,10 @@ class relay
 	 */
 	private function http_referer()
 	{
-		$scheme = !empty($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : 'http';
-		$port = !empty($_SERVER['SERVER_PORT']) ? ":{$_SERVER['SERVER_PORT']}" : "";
-		$uri = !empty($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
-		$server = !empty($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost';
+		$scheme = !empty($_SERVER["REQUEST_SCHEME"]) ? $_SERVER["REQUEST_SCHEME"] : "http";
+		$port = !empty($_SERVER["SERVER_PORT"]) ? ":{$_SERVER["SERVER_PORT"]}" : "";
+		$uri = !empty($_SERVER["REQUEST_URI"]) ? $_SERVER["REQUEST_URI"] : "/";
+		$server = !empty($_SERVER["SERVER_NAME"]) ? $_SERVER["SERVER_NAME"] : "localhost";
 		$referer = "{$scheme}://{$server}{$port}{$uri}";
 
 		return $referer;
@@ -40,18 +40,18 @@ class relay
 	 * @param array $data
 	 * @return string
 	 */
-	private function parse_merge($url='', $data=array())
+	private function parse_merge($url="", $data=array())
 	{
 		$chunks = parse_url($url);
 		#print_r($chunks);
-		if(empty($chunks['scheme'])) $chunks['scheme'] = 'http';
-		if(empty($chunks['host'])) $chunks['host'] = 'localhost';
-		if(empty($chunks['port'])) $chunks['port'] = '';
-		if(empty($chunks['user'])) $chunks['user'] = '';
-		if(empty($chunks['pass'])) $chunks['pass'] = '';
-		if(empty($chunks['path'])) $chunks['path'] = '/';
-		if(empty($chunks['query'])) $chunks['query'] = '';
-		if(empty($chunks['fragment'])) $chunks['fragment'] = '';
+		if(empty($chunks["scheme"])) $chunks["scheme"] = "http";
+		if(empty($chunks["host"])) $chunks["host"] = "localhost";
+		if(empty($chunks["port"])) $chunks["port"] = "";
+		if(empty($chunks["user"])) $chunks["user"] = "";
+		if(empty($chunks["pass"])) $chunks["pass"] = "";
+		if(empty($chunks["path"])) $chunks["path"] = "/";
+		if(empty($chunks["query"])) $chunks["query"] = "";
+		if(empty($chunks["fragment"])) $chunks["fragment"] = "";
 
 		#print_r($chunks);
 		
@@ -96,17 +96,22 @@ class relay
 	 * @param string $url
 	 * @return mixed
 	 */
-	public function fetch($url = '')
+	public function fetch($url = "")
 	{
-		$_SERVER['HTTP_REFERER'] = $this->http_referer();
+		$_SERVER["HTTP_REFERER"] = $this->http_referer();
 
 		/**
 		 * @todo Sanitize merge process
 		 * @todo Specifically prefer the HTTP verbs
 		 */
 		$url = $this->parse_merge($url, $this->get);
-		$get_parameters = http_build_query((array)$this->get); # Unused?
-		$post_parameters = http_build_query((array)$this->post);
+
+		/**
+		 * GET parameters are already made with URL
+		 * No need to use the variable
+		 */
+		//$get_parameters = http_build_query((array)$this->get); # Unused?
+
 
 		#echo $url, $post_parameters, $get_parameters;
 		#echo "Curl Fetch called.";
@@ -115,8 +120,8 @@ class relay
 
 		curl_setopt($ch, CURLOPT_URL, $url);
 
-		curl_setopt($ch, CURLOPT_POST, count($this->post)>=1);
 		// @see http://php.net/manual/en/function.curl-setopt.php
+		// print_r($this); die();
 		if(count($this->post))
 		{
 			/**
@@ -124,32 +129,54 @@ class relay
 			 * Passing an array to CURLOPT_POSTFIELDS will encode the data as multipart/form-data, while passing a URL-encoded string will encode the data as application/x-www-form-urlencoded.
 			 * multipart/form-data
 			 * application/x-www-form-urlencoded
+			 * @todo Handle cases with files upload
 			 */
-			// @todo When uploading a file, do not build http query
-			// curl_setopt($ch, CURLOPT_POSTFIELDS, $post_parameters);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $this->post);
+			// @todo When uploading a file, do not build with http query
+			curl_setopt($ch, CURLOPT_POST, true);
+			$post_parameters = http_build_query((array)$this->post);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post_parameters);
+			//curl_setopt($ch, CURLOPT_POSTFIELDS, $this->post);
+			echo "Sending POST data: ";
+			print_r($this->post);
 		} # causes error on IP lookup
+		else
+		{
+			curl_setopt($ch, CURLOPT_POST, false);
+			curl_setopt($ch, CURLOPT_HTTPGET, true);
+		}
 
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 50); # 2 for IP lookup
+		curl_setopt($ch, CURLOPT_MAXREDIRS, 2);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+		curl_setopt($ch, CURLOPT_FORBID_REUSE, true);
+		curl_setopt($ch, CURLOPT_NOPROGRESS, true);
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 50);
-		curl_setopt($ch, CURLOPT_REFERER, $_SERVER['HTTP_REFERER']); # sometimes selective
-		curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); # sometimes selective
+		curl_setopt($ch, CURLOPT_REFERER, $_SERVER["HTTP_REFERER"]); # sometimes selective
+		curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER["HTTP_USER_AGENT"]); # sometimes selective
 		curl_setopt($ch, CURLOPT_VERBOSE, false);
 		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+		curl_setopt($ch, CURLOPT_HEADEROPT, CURLHEADER_UNIFIED);
+		curl_setopt($ch, CURLOPT_ENCODING, "deflate");
+
+		/**
+		 * For file uploads?
+		 */
+		curl_setopt($ch, CURLOPT_UPLOAD, true);
+		curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true); // removed in PHP 7
 		// CURLOPT_STDERR
 		// CURLOPT_UPLOAD
 
 		// file upload settings
-		curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
 
 		/**
 		 * Optional headers
+		 * eg. Protection Code
+		 * eg. Authorization Token
 		 */
 		if(count($this->headers))
 		{
@@ -159,8 +186,8 @@ class relay
 		/**
 		 * @todo Fix the file path
 		 */
-		curl_setopt($ch, CURLOPT_COOKIEJAR, '/tmp/cookie.jar');
-		curl_setopt($ch, CURLOPT_COOKIEFILE, '/tmp/cookie.jar');
+		curl_setopt($ch, CURLOPT_COOKIEJAR, "/tmp/cookie.jar");
+		curl_setopt($ch, CURLOPT_COOKIEFILE, "/tmp/cookie.jar");
 		$content_extracted = curl_exec($ch);
 
 		if($error = curl_errno($ch)) {

@@ -1,9 +1,11 @@
 <?php
+namespace cases\get;
+
 use connections\relay;
 use endpoints\endpoints;
 use \PHPUnit\Framework\TestCase;
 
-class PostTest extends TestCase
+class GetTest extends TestCase
 {
 	private $api_url;
 
@@ -12,12 +14,12 @@ class PostTest extends TestCase
 		$_GET = array();
 		$_POST = array();
 
-		$this->api_url = (new endpoints())->post;
+		$this->api_url = (new endpoints())->get;
 	}
 
-	public function testPostMustBePresent1()
+	public function testGetMustBePresent1()
 	{
-		$_POST = array(
+		$_GET = array(
 			"id" => "present",
 		);
 
@@ -27,9 +29,9 @@ class PostTest extends TestCase
 		$this->assertEquals("found", $result);
 	}
 
-	public function testPostMustBePresent2()
+	public function testGetMustBePresent2()
 	{
-		$_POST = array(
+		$_GET = array(
 			"id" => "other",
 		);
 
@@ -39,9 +41,9 @@ class PostTest extends TestCase
 		$this->assertEquals("invalid", $result);
 	}
 
-	public function testPostMustBePresent3()
+	public function testGetMustBePresent3()
 	{
-		$_POST = array(
+		$_GET = array(
 			"other" => "something",
 		);
 

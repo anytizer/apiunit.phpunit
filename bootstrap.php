@@ -30,6 +30,7 @@ if(!function_exists("http_build_query"))
 /**
  * The cURL application will set its own headers
  */
+/**
 stream_context_set_default(
 	array(
 		"http" => array(
@@ -37,6 +38,7 @@ stream_context_set_default(
 		)
 	)
 );
+*/
 
 /**
  * Often XDebug is NOT necessary.
