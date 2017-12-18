@@ -33,11 +33,13 @@ Setting up PHPUnit or running the unit tests is beyond the scope of the project.
 
 
 ## CLI Reference
+
 You can create several test suites for (different projects) and run them individually by name.
 [Learn to create test suites](https://phpunit.de/manual/current/en/organizing-tests.html). 
 
 	phpunit --testsuite clients
 	phpunit --testsuite cases
+
 
 ### Standard Tests
 
@@ -101,9 +103,9 @@ Handles GET and POST to send to the sever. Then, expects JSON.
 
 First, You should have your API Server ready. Discussions beyond scope for now.
 
- * [Math Calculations Test](cases/api/MathTest.php)
- * [File Upload Test](cases/file/FileTest.php)
- * [API Gateway Ping/Pong Test](cases/ping/PingPongTest.php)
+ * [Math Calculations Test](cases/api/MathTest.php) - [API](api.tests/math.php)
+ * [File Upload Test](cases/file/FileTest.php) - [API](api.tests/upload-single.php)
+ * [API Gateway Ping/Pong Test](cases/ping/PingPongTest.php) -  - [API](api.tests/ping.php)
 
 
 # FAQ
