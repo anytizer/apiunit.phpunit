@@ -12,7 +12,8 @@ final class endpoints extends settings
 		// @todo Use singleton output, no multiple instances
 
 		// set the server
-		$this->root = "http://api.example.com:9090"; // $root;
+		// $this->root = "http://api.example.com:9090/tests"; // $root;
+		$this->root = "http://192.168.0.100/angular/libraries/apiunit.phpunit/api.tests"; // $root;
 
 		/**
 		 * foreach public endpoints, prepend the host name

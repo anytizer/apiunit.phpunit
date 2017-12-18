@@ -5,6 +5,13 @@ use connections\relay;
 use endpoints\endpoints;
 use \PHPUnit\Framework\TestCase;
 
+/**
+ * Class PostTest
+ * @package cases\post
+ *
+ * @see file_uploads, upload_max_filesize, upload_tmp_dir, post_max_size and max_input_time
+ * @see http://php.net/manual/en/features.file-upload.post-method.php
+ */
 class PostTest extends TestCase
 {
 	private $api_url;
