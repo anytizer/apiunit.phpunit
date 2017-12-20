@@ -54,10 +54,29 @@ You can create several test suites for (different projects) and run them individ
 	phpunit --testsuite ping
 	phpunit --testsuite post
 
+## Regarding API Tokens and Cookies
 
-## Examples
+If your API Gateway requires tokens or cookie data, you should persist them at client side once you login to the API.
+Organizing those data for your API Testing is beyond the scope of the project.
 
-It is as simple as:
+
+## Relay Class
+
+It uses a [`relay`](classes/connections/class.relay.inc.php) class to collect and send data to the server.
+Internally, it is using PHP's `curl` methods to transport the data.
+I have taken care of setting of [several curl set options](http://php.net/manual/en/function.curl-setopt.php) just enough to support normal API access.
+It supports several conditional parameters like GET, POST and FILE.
+
+[`relay`](classes/connections/class.relay.inc.php) is the core of this testing application that forwards all GET/POST data to the API Gateway. It has the 
+following capabilities:
+
+ * Sends GET parameters
+ * Sends POST Data
+ * Sends File Uploads (single, multiple, arrays)
+
+You do not need to decode the $_POST data on the server side from [php://input](php.net/manual/en/wrappers.php.php).
+
+Using relay is as simple as:
 
     $url = "http://localhost/test.php";
     
@@ -74,26 +93,6 @@ If you need JSON data out ot it, just do:
     $json = json_decode($result);
 
 Make sure that your data $result was a valid JSON String.
-
-
-## Capabilities
-
- * Sends GET parameters
- * Sends POST Data
- * Sends File Uploads (single, multiple, arrays)
-
-## API Tokens
-
-If your API Gateway requires tokens, you should persist them at client side once you login to the API.
-
-
-## Relay Class
-
-It uses a [`relay`](classes/connections/class.relay.inc.php) class to collect and send data to the server.
-Internally, it is using PHP's `curl` methods to transport the data.
-I have taken care of setting of [several curl set options](http://php.net/manual/en/function.curl-setopt.php) just enough to support normal API access.
-It supports several conditional parameters like GET, POST and FILE.
-
 
 ## Handles Requests
 

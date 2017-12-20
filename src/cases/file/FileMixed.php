@@ -23,8 +23,8 @@ class FileMixedTest extends TestCase
 		$ru = new ReadyToUpload();
 
 		$_POST = array(
-			"profile" => $ru->collect("resources/acs.png"),
-			"reports" => $ru->collect("resources/reports.pdf"),
+			"profile" => $ru->collect("../resources/acs.png"),
+			"reports" => $ru->collect("../resources/reports.pdf"),
 		);
 
 		$this->markTestIncomplete();

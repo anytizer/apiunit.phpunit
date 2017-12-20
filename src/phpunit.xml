@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit bootstrap="bootstrap.php" backupGlobals="false" colors="true" cacheTokens="false" processIsolation="true" verbose="true">
+    <testsuites>
+        <testsuite name="api">
+            <directory suffix="Test.php">cases/api</directory>
+        </testsuite>
+        <testsuite name="cookie">
+            <directory suffix="Test.php">cases/cookie</directory>
+        </testsuite>
+        <testsuite name="file">
+            <directory suffix="Test.php">cases/file</directory>
+        </testsuite>
+        <testsuite name="get">
+            <directory suffix="Test.php">cases/get</directory>
+        </testsuite>
+        <testsuite name="headers">
+            <directory suffix="Test.php">cases/headers</directory>
+        </testsuite>
+        <testsuite name="ip">
+            <directory suffix="Test.php">cases/ip</directory>
+        </testsuite>
+        <testsuite name="login">
+            <directory suffix="Test.php">cases/login</directory>
+        </testsuite>
+        <testsuite name="mime">
+            <directory suffix="Test.php">cases/mime</directory>
+        </testsuite>
+        <testsuite name="ping">
+            <directory suffix="Test.php">cases/ping</directory>
+        </testsuite>
+        <testsuite name="post">
+            <directory suffix="Test.php">cases/post</directory>
+        </testsuite>
+        <!-- all test cases -->
+        <testsuite name="cases">
+            <directory suffix="Test.php">cases</directory>
+        </testsuite>
+        <!-- clients applications are skipped in git repository -->
+        <testsuite name="clients">
+            <directory suffix="Test.php">../cases-clients/gallery</directory>
+        </testsuite>
+    </testsuites>
+   <logging>
+		<log type="testdox-text" target="logs/testdox.txt" logIncompleteSkipped="true"/>
+    </logging>
+    <php>
+        <const name="APIUNIT_VERSION" value="1.0.0"/>
+    </php>
+</phpunit>
