@@ -4,6 +4,12 @@ namespace cases\login;
 use \connections\relay;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class LoginTest
+ * @package cases\login
+ *
+ * phpunit --filter LoginTest
+ */
 class LoginTest extends TestCase
 {
 	public function testLoginFailure()

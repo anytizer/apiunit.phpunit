@@ -6,6 +6,12 @@ use endpoints\endpoints;
 use others\ReadyToUpload;
 use \PHPUnit\Framework\TestCase;
 
+/**
+ * Class FileMultipleTest
+ * @package cases\file
+ *
+ * phpunit --filter FileMultipleTest
+ */
 class FileMultipleTest extends TestCase
 {
 	private $api_url;

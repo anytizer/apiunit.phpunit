@@ -12,6 +12,7 @@ abstract class settings
 	public $pingpong = "ping.php";
 	public $datetime = "datetime.php";
 	public $math = "math.php";
+	public $algorithms = "algorithms.php";
 
 	public $get = "get.php";
 	public $post = "post.php";

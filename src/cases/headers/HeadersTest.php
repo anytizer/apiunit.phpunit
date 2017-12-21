@@ -5,6 +5,12 @@ use connections\relay;
 use endpoints\endpoints;
 use \PHPUnit\Framework\TestCase;
 
+/**
+ * Class HeadersTest
+ * @package cases\headers
+ *
+ * phpunit --filter HeadersTest
+ */
 class HeadersTest extends TestCase
 {
 	private $api_url;

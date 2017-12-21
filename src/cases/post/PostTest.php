@@ -7,10 +7,12 @@ use \PHPUnit\Framework\TestCase;
 
 /**
  * Class PostTest
+ * Also see: file_uploads, upload_max_filesize, upload_tmp_dir, post_max_size and max_input_time
  * @package cases\post
  *
- * @see file_uploads, upload_max_filesize, upload_tmp_dir, post_max_size and max_input_time
  * @see http://php.net/manual/en/features.file-upload.post-method.php
+ *
+ * phpunit --filter PostTest
  */
 class PostTest extends TestCase
 {

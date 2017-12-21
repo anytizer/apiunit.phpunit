@@ -4,6 +4,12 @@ namespace cases\ip;
 use connections\relay;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class IpTest
+ * @package cases\ip
+ *
+ * phpunit --filter IpTest
+ */
 class IpTest extends TestCase
 {
 	public function setup()

@@ -4,6 +4,12 @@ namespace cases\headers;
 use endpoints\endpoints;
 use \PHPUnit\Framework\TestCase;
 
+/**
+ * Class LoginTest
+ * @package cases\headers
+ *
+ * phpunit --filter LoginTest
+ */
 class LoginTest extends TestCase
 {
 	private $api_url;

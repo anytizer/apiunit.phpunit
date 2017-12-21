@@ -5,6 +5,8 @@ use connections\relay;
 use endpoints\endpoints;
 use \PHPUnit\Framework\TestCase;
 
+# phpunit --filter MathTest
+
 class MathTest extends TestCase
 {
 	private $api_url;

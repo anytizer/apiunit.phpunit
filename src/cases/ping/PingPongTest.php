@@ -5,6 +5,12 @@ use connections\relay;
 use endpoints\endpoints;
 use \PHPUnit\Framework\TestCase;
 
+/**
+ * Class PingPongTest
+ * @package cases\ping
+ *
+ * phpunit --filter PingPongTest
+ */
 class PingPongTest extends TestCase
 {
 	public function setup()

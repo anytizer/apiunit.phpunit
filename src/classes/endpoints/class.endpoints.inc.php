@@ -1,6 +1,7 @@
 <?php
 namespace endpoints;
 
+use PHPUnit\Runner\Exception;
 use \ReflectionObject;
 use \ReflectionProperty;
 
@@ -28,21 +29,21 @@ final class endpoints extends settings
 
 	private function __clone()
 	{
-		//
+		throw new Exception("Cloning not allowed.");
 	}
 
 	private function __wakeup()
 	{
-		//
+		throw new Exception("Wakeup not allowed.");
 	}
 
 	public function __set($name, $value)
 	{
-		die("Exception no index");
+		throw new Exception("Not allowed to set new index: ".$name);
 	}
 
 	public function __get($index)
 	{
-		die("Looking for ".$index);
+		throw new Exception("Looking for invalid index: ".$index);
 	}
 }

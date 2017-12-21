@@ -6,6 +6,7 @@ use \PHPUnit\Framework\TestCase;
 
 /**
  * Generate and Use tokens before actual API is being accessed
+ * phpunit --filter TokenTest
  */
 class TokenTest extends TestCase
 {

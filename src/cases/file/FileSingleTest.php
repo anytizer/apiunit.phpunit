@@ -8,6 +8,12 @@ use others\ReadyToUpload;
 use \CURLFile;
 use \PHPUnit\Framework\TestCase;
 
+/**
+ * Class FileSingleTest
+ * @package cases\file
+ *
+ * phpunit --filter FileSingleTest
+ */
 class FileSingleTest extends TestCase
 {
 	private $api_url;
@@ -23,7 +29,8 @@ class FileSingleTest extends TestCase
 	public function testErrorUploadingTooBigFile()
 	{
 		// max file size limited
-		$filename = "C:/hiberfil.sys";
+		#$filename = "C:/hiberfil.sys";
+		$filename = "C:/bdlog.txt";
 		$ru = new ReadyToUpload();
 
 		$_POST = array(
@@ -43,12 +50,12 @@ class FileSingleTest extends TestCase
 	public function testUploadSingleFileLegacyCurlMethod()
 	{
 		// @filename method
-		$filename = 'resources/acs.png';
+		$filename = "../resources/acs.png";
 
 		// uploads, works
 		$ch = curl_init($this->api_url);
-		$cfile = new CURLFile($filename,'image/png','profile.png');
-		$data = array('profile' => $cfile);
+		$cfile = new CURLFile($filename,"image/png","profile.png");
+		$data = array("profile" => $cfile);
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -75,7 +82,7 @@ class FileSingleTest extends TestCase
 		// https://wiki.php.net/rfc/curl-file-upload
 		// http://php.net/curl_file_create -- procedural to CurlFile
 
-		$filename = "resources/acs.png";
+		$filename = "../resources/acs.png";
 
 		$mimer = new mimer();
 		$mime = $mimer->get_mime($filename);

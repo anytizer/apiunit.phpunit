@@ -4,6 +4,12 @@ namespace cases\mime;
 use \PHPUnit\Framework\TestCase;
 use \others\mimer;
 
+/**
+ * Class MimeInfoTest
+ * @package cases\mime
+ *
+ * phpunit --filter MimeInfoTest
+ */
 class MimeInfoTest extends TestCase
 {
 	/**

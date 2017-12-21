@@ -7,6 +7,11 @@ use \PHPUnit\Framework\TestCase;
 
 /**
  * Define your own Test Cases
+ *
+ * Class IpAddressTest
+ * @package cases\ip
+ *
+ * phpunit --filter IpAddressTest
  */
 class IpAddressTest extends TestCase
 {

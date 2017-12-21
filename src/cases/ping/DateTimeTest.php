@@ -5,6 +5,12 @@ use connections\relay;
 use endpoints\endpoints;
 use \PHPUnit\Framework\TestCase;
 
+/**
+ * Class DateTimeTest
+ * @package cases\ping
+ *
+ * phpunit --filter DateTimeTest
+ */
 class DateTimeTest extends TestCase
 {
 	public function setup()

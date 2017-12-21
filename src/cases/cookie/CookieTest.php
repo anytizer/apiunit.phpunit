@@ -5,6 +5,12 @@ use connections\relay;
 use endpoints\endpoints;
 use \PHPUnit\Framework\TestCase;
 
+/**
+ * Class CookieTest
+ * @package cases\cookie
+ *
+ * phpunit --filter CookieTest
+ */
 class CookieTest extends TestCase
 {
 	private $api_url;
