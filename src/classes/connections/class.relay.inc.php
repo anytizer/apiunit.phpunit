@@ -86,6 +86,16 @@ class relay
 		$headers = array();
 		foreach($headers_assoc as $name => $value)
 		{
+			/**
+			 * Custom headers must have DASHes, not UNDERSCOREs.
+			 *
+			 * X_PROTECTION_CODE
+			 * X-Protection-Code
+			 *
+			 * HTTP_X_PROTECTION_CODE
+			 */
+			$name = str_replace("_", "-", $name);
+
 			$headers[] = "{$name}: {$value}";
 		}
 
@@ -181,13 +191,18 @@ class relay
 		// file upload settings
 
 		/**
-		 * Optional headers
+		 * Additional custom headers
 		 * eg. Protection Code
 		 * eg. Authorization Token
 		 */
 		if(count($this->headers))
 		{
+			// CURLOPT_HEADEROPT
+			// CURLOPT_HTTPHEADER
+			// CURLOPT_PROXYHEADER
+			// CURLOPT_CUSTOMREQUEST
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
+			//curl_setopt_array($ch, $this->headers);
 		}
 		
 		/**

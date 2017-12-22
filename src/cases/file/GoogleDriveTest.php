@@ -6,6 +6,10 @@ use endpoints\endpoints;
 use others\ReadyToUpload;
 use \PHPUnit\Framework\TestCase;
 
+/**
+ * Class GoogleDriveTest
+ * @package cases\file
+ */
 class GoogleDriveTest extends TestCase
 {
 	private $api_url;

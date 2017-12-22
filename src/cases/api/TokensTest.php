@@ -17,7 +17,8 @@ class TokenTest extends TestCase
 		$_GET = array();
 		$_POST = array();
 
-		$this->relay = new relay();
+		$result = $relay->fetch("http://192.168.0.100/angular/libraries/apiunit.phpunit/src/api.tests/strict.php");
+		$this->assertEquals("22", $result);
 	}
 
 	public function testTokenCreate()

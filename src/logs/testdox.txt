@@ -1,5 +1,6 @@
-cases\post\Post
- [x] Post must be present 1
- [x] Post must be present 2
- [x] Post must be present 3
+cases\api\Strict
+ [x] Strict test
+ [x] Strict test extra get
+ [x] Strict test extra post
+ [x] Strict test extra both
 

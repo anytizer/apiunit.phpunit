@@ -6,6 +6,10 @@ use endpoints\endpoints;
 use others\ReadyToUpload;
 use \PHPUnit\Framework\TestCase;
 
+/**
+ * Class FileMixedTest
+ * @package cases\file
+ */
 class FileMixedTest extends TestCase
 {
 	private $api_url;

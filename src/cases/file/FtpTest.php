@@ -6,6 +6,10 @@ use endpoints\endpoints;
 use others\ReadyToUpload;
 use \PHPUnit\Framework\TestCase;
 
+/**
+ * Class FtpTest
+ * @package cases\file
+ */
 class FtpTest extends TestCase
 {
 	private $api_url;
