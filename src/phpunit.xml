@@ -37,7 +37,7 @@
         </testsuite>
         <!-- clients applications are skipped in git repository -->
         <testsuite name="clients">
-            <directory suffix="Test.php">../cases-clients/gallery</directory>
+            <directory suffix="Test.php">../cases-clients</directory>
         </testsuite>
     </testsuites>
    <logging>

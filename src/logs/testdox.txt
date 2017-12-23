@@ -1,6 +1,0 @@
-cases\api\Strict
- [x] Strict test
- [x] Strict test extra get
- [x] Strict test extra post
- [x] Strict test extra both
-
